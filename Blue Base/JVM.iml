@@ -11,7 +11,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../Core/out/artifacts/Blue_Base_Core_jar/Blue Base_Core.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../Core/out/artifacts/Blue_Base_Core_jar/Blue_Base_Core.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
