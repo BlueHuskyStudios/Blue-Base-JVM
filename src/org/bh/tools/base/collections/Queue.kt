@@ -14,10 +14,10 @@ import org.bh.tools.base.collections.extensions.removeFirst
 
 
 /**
- * Creates a new [java.util.Queue] out of this Queue
+ * Creates a new [java.util.Queue] out of this Blue Base Queue
  */
-fun <Element> Queue<Element>.javaQueueValue(): java.util.Queue<Element> {
-    val mutableListCopy = listValue()
+fun <Element> org.bh.tools.base.collections.Queue<Element>.javaQueueValue(): java.util.Queue<Element> {
+    val mutableListCopy: MutableList<Element> = this.mutableListValue()
     return object: java.util.Queue<Element> {
         override val size: Int get() = mutableListCopy.size
 
