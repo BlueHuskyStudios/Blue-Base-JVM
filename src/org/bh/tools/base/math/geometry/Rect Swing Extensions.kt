@@ -1,5 +1,6 @@
 package org.bh.tools.base.math.geometry
 
+import org.bh.tools.base.math.*
 import java.awt.Rectangle
 import org.bh.tools.base.math.geometry.Rect
 import java.awt.geom.*
@@ -12,7 +13,7 @@ import java.awt.geom.*
 
 
 
-val IntegerRect.awtValue: Rectangle by lazy { Rectangle(x.int32Value, y.int32Value, width.int32Value, height.int32Value) }
+val IntegerRect.awtValue: Rectangle get() = Rectangle(x.int32Value, y.int32Value, width.int32Value, height.int32Value)
 val java.awt.Rectangle.integerValue: IntegerRect get() = IntegerRect(x = x.integerValue, y = y.integerValue, width = width.integerValue, height = height.integerValue)
 
 

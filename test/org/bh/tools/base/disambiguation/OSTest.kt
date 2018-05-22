@@ -5,7 +5,7 @@ package org.bh.tools.base.disambiguation
 
 import org.bh.tools.base.math.int32Value
 import org.bh.tools.base.strings.repeat
-import org.junit.jupiter.api.Test
+import org.junit.*
 import kotlin.reflect.KClass
 import kotlin.test.*
 

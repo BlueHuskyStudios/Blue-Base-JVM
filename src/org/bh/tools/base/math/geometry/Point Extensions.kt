@@ -10,8 +10,12 @@ package org.bh.tools.base.math.geometry
  */
 
 
-operator fun FractionPoint.Companion.invoke(awtValue: java.awt.geom.Point2D) = FractionPoint(awtValue.x, awtValue.y)
-operator fun FractionPoint.Companion.invoke(fxValue: javafx.geometry.Point2D) = FractionPoint(fxValue.x, fxValue.y)
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun FractionPoint.Companion.invoke(awtValue: java.awt.geom.Point2D)
+        = FractionPoint(awtValue.x, awtValue.y)
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun FractionPoint.Companion.invoke(fxValue: javafx.geometry.Point2D)
+        = FractionPoint(fxValue.x, fxValue.y)
 
 
 
