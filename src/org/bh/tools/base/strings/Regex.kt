@@ -2,7 +2,7 @@ package org.bh.tools.base.strings
 
 import org.bh.tools.base.strings.Regex.*
 import org.bh.tools.base.strings.Regex.Companion.Options
-import java.util.regex.Pattern
+import java.util.regex.*
 
 /**
  * Copyright BHStudios ©2016 BH-1-PS. Made for Snek.
@@ -51,20 +51,3 @@ val String.regexValue: Regex get() = Regex(this)
 fun String.regexValue(options: Set<Options>) = Regex(this, options)
 /** Determines whether this string matches the given regex */
 fun String.matchs(regex: Regex): Boolean = regex.isMatch(this)
-
-/*
-public class Regex {
-  private let basis: NSRegularExpression
-  public init(basis: NSRegularExpression)
-  public init(basis: String, options: NSRegularExpression.Options = [])
-
-  public func matches(_: String) -> Bool
-  public func matches(in: String) -> [NSTextCheckingResult]
-  public func groups(in: String) -> [String]
-}
-
-public extension String {
-  public val regexValue: Regex
-  public func regexValue(options: NSRegularExpression.Options) -> Regex
-}
- */

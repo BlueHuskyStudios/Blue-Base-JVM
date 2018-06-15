@@ -1,9 +1,6 @@
 package org.bh.tools.base.math.geometry
 
 import org.bh.tools.base.math.*
-import java.awt.Rectangle
-import org.bh.tools.base.math.geometry.Rect
-import java.awt.geom.*
 
 
 /*
@@ -13,13 +10,12 @@ import java.awt.geom.*
 
 
 
-val IntegerRect.awtValue: Rectangle get() = Rectangle(x.int32Value, y.int32Value, width.int32Value, height.int32Value)
-val java.awt.Rectangle.integerValue: IntegerRect get() = IntegerRect(x = x.integerValue, y = y.integerValue, width = width.integerValue, height = height.integerValue)
+val IntegerRect.awtValue get() = java.awt.Rectangle(x.int32Value, y.int32Value, width.int32Value, height.int32Value)
+val java.awt.Rectangle.integerValue get() = IntegerRect(x = x.integerValue, y = y.integerValue, width = width.integerValue, height = height.integerValue)
 
 
 
+operator fun FractionRect.Companion.invoke(awtValue: java.awt.geom.Rectangle2D) = FractionRect(awtValue.x, awtValue.y, awtValue.width, awtValue.height)
+val FractionRect.awtValue get() = java.awt.geom.Rectangle2D.Double(x, y, width, height)
 
-operator fun FractionRect.Companion.invoke(awtValue: Rectangle2D) = FractionRect(awtValue.x, awtValue.y, awtValue.width, awtValue.height)
-val FractionRect.awtValue: Rectangle2D get() = Rectangle2D.Double(x, y, width, height)
-
-val java.awt.Rectangle.fractionValue: FractionRect get() = FractionRect(x = x, y = y, width = width, height = height)
+val java.awt.Rectangle.fractionValue get() = FractionRect(x = x, y = y, width = width, height = height)

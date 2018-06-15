@@ -446,13 +446,13 @@ enum class MacOSSubtype(
         /**
          * Turns the given raw name into a [MacOSSubtype]
          *
-         * @param rawName The name as a string, like `Mac OS X` or `macOS Sierra`. Case is ignored.
+         * @param raw The name as a string, like `Mac OS X 10.5` or `macOS Sierra`. Case is ignored.
          *
          * @return The macOS subtype that best matches the given raw name, or [unknown] if it's likely an unknown
          *         type of macOS, or `null` if it's likely not a type of macOS at all.
          */
-        fun fromRaw(rawName: String): MacOSSubtype? = values().firstOrNull {
-            it.regex.containsMatchIn(rawName)
+        fun fromRaw(raw: String): MacOSSubtype? = values().firstOrNull {
+            it.regex.containsMatchIn(raw)
         }
     }
 }

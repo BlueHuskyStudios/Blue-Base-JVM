@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package org.bh.tools.base.math.geometry
 
 import org.bh.tools.base.math.*
@@ -8,8 +10,8 @@ import java.util.*
  * @since 2018-03-22
  */
 
-val java.awt.Dimension.sizeValue: IntegerSize get() = IntegerSize(width = width.integerValue, height = height.integerValue)
-val IntegerSize.awtValue: java.awt.Dimension get() = java.awt.Dimension(width.int32Value, height.int32Value)
+val java.awt.Dimension.sizeValue get() = IntegerSize(width = width.integerValue, height = height.integerValue)
+val IntegerSize.awtValue get() = java.awt.Dimension(width.int32Value, height.int32Value)
 
 
 
@@ -32,13 +34,19 @@ fun <NumberType : Number> ComputableSize<NumberType>.randomPoint(): Point<Number
                         minimumValue = minY.integerValue,
                         maximumValue = maxY.integerValue + 1) as NumberType
         )
-    } else if (width.isNativeFraction && height.isNativeFraction) {
+    }
+    else if (width.isNativeFraction && height.isNativeFraction) {
         Point(
-                x = (random.nextFraction() * (width.fractionValue + 1)) as NumberType,
-                y = (random.nextFraction() * (height.fractionValue + 1)) as NumberType
+                x = random.nextFraction(
+                        minimumValue = minX.fractionValue,
+                        maximumValue = maxX.fractionValue
+                ) as NumberType,
+                y = random.nextFraction(
+                        minimumValue = minY.fractionValue,
+                        maximumValue = maxY.fractionValue) as NumberType
         )
     } else {
-        print("Type not supported: ${width::class} x ${width::class}")
+        print("Type not supported: ${width::class} x ${height::class}")
         Point(
                 x = width,
                 y = height

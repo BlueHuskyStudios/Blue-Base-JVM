@@ -5,7 +5,7 @@ import java.util.*
 
 
 /*
- * Extending [Path]
+ * To sort lists
  *
  * @author Ben Leggiero
  * @since 2018-03-22
@@ -13,20 +13,19 @@ import java.util.*
 
 
 
-
-private fun <ContentType> List<ContentType>.sortedQueueValue(sorter: ComparatorBlock<ContentType>): Queue<ContentType> {
-    val x = PriorityQueue<ContentType>(
-            { lhs, rhs ->
-                when {
-                    lhs == null -> ComparisonResult.right
-                    rhs == null -> ComparisonResult.left
-                    else -> sorter(lhs, rhs)
-                }
+private fun <Content> List<Content>.sortedQueueValue(sorter: ComparatorBlock<Content>): Queue<Content> {
+    val x = PriorityQueue<Content> { lhs, rhs ->
+        when {
+            lhs == null -> ComparisonResult.right
+            rhs == null -> ComparisonResult.left
+            else -> sorter(lhs, rhs)
+        }
                 .nativeValue
-            })
+    }
     x.addAll(this)
     return x
 }
+
 
 inline fun <ContentType> List<ContentType>.sorted(crossinline sorter: ComparatorBlock<ContentType>): List<ContentType> =
         this.sortedWith(kotlin.Comparator<ContentType> { lhs, rhs ->
