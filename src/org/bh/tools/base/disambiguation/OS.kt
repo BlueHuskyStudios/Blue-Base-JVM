@@ -2,13 +2,12 @@
 
 package org.bh.tools.base.disambiguation
 
-import org.bh.tools.base.abstraction.Integer
+import org.bh.tools.base.abstraction.*
 import org.bh.tools.base.disambiguation.OSArchitecture.*
 import org.bh.tools.base.disambiguation.OSSupport.*
-import org.bh.tools.base.func.tuple
-import org.bh.tools.base.struct.Version
-import org.bh.tools.base.struct.v
-import kotlin.reflect.KClass
+import org.bh.tools.base.func.*
+import org.bh.tools.base.struct.*
+import kotlin.reflect.*
 
 /**
  * For easy OS detection.
@@ -107,7 +106,9 @@ sealed class OS(
         rawVersion?.let {
             ret.append(" (").append(it).append(")")
         }
-        ret.append(" ").append(architecture)
+        if (architecture !== OSArchitecture.unknown) {
+            ret.append(" ").append(architecture)
+        }
         return ret.toString()
     }
 
@@ -145,7 +146,7 @@ sealed class OS(
                             rawName = rawName,
                             rawVersion = rawVersion ?: subtype.newestVersion.toString(),
                             architecture = OSArchitecture.fromRaw(rawArchitecture))
-                } ?: MacOSSubtype.fromRawName(rawName)?.let { subtype ->
+                } ?: MacOSSubtype.fromRaw(rawVersion?.let { "$rawName $it" } ?: rawName)?.let { subtype ->
                     macOS(subtype = subtype,
                             rawName = rawName,
                             rawVersion = rawVersion ?: subtype.newestVersion.toString(),
@@ -372,7 +373,7 @@ enum class WindowsSubtype(
 
 private const val macOSDeprecationMessageForJava7 = "macOS versions prior to Lion (10.7.3) are not supported by Java 7"
 private const val macOSDeprecationMessage = "macOS versions prior to Mountain Lion (10.8.3) are not supported by Java 8"
-const private val macOSDeprecationReplacement = "mountainLion"
+private const val macOSDeprecationReplacement = "mountainLion"
 
 /** The sub-type of macOS, like "Mac OS X Mountain Lion" or "macOS Sierra" */
 enum class MacOSSubtype(
@@ -427,8 +428,14 @@ enum class MacOSSubtype(
     /** The OS X El Capitan family of operating systems (10.11.0 to 10.11.6) */
     elCapitan(support = supported, regex = "^(mac)?\\s*os\\s*x\\s*(el\\s*cap(itan)?|10\\.11(\\.\\d)?)$".toRegex(RegexOption.IGNORE_CASE), newestVersion = v(10,11,6)),
 
-    /** The macOS Sierra family of operating systems (10.12.0 to present) */
-    sierra(support = supported, regex = "^(mac)?\\s*os(\\s*x)?\\s*(sierra|10\\.12(\\.\\d)?)$".toRegex(RegexOption.IGNORE_CASE), newestVersion = v(10,12,3)),
+    /** The macOS Sierra family of operating systems (10.12.0 to 10.12.6) */
+    sierra(support = supported, regex = "^(mac)?\\s*os(\\s*x)?\\s*(sierra|10\\.12(\\.\\d)?)$".toRegex(RegexOption.IGNORE_CASE), newestVersion = v(10,12,6)),
+
+    /** The macOS High Sierra family of operating systems (10.13.0 to 10.13.6) */
+    highSierra(support = supported, regex = "^(mac)?\\s*os(\\s*x)?\\s*(high\\s*sierra|10\\.13(\\.\\d)?)$".toRegex(RegexOption.IGNORE_CASE), newestVersion = v(10,13,6)),
+
+    /** The macOS Mojave family of operating systems (10.14.0 to present) */
+    mojave(support = supported, regex = "^(mac)?\\s*os(\\s*x)?\\s*(mo[hj]ave|10\\.14(\\.\\d)?)$".toRegex(RegexOption.IGNORE_CASE), newestVersion = v(10,14)),
 
 
     /** The OS is likely macOS, but the version is unknown. It is likely newer than this library. */
@@ -439,12 +446,12 @@ enum class MacOSSubtype(
         /**
          * Turns the given raw name into a [MacOSSubtype]
          *
-         * @param rawName The name as a string, like `macOS Sierra`. Case is ignored.
+         * @param rawName The name as a string, like `Mac OS X` or `macOS Sierra`. Case is ignored.
          *
          * @return The macOS subtype that best matches the given raw name, or [unknown] if it's likely an unknown
          *         type of macOS, or `null` if it's likely not a type of macOS at all.
          */
-        fun fromRawName(rawName: String): MacOSSubtype? = values().firstOrNull {
+        fun fromRaw(rawName: String): MacOSSubtype? = values().firstOrNull {
             it.regex.containsMatchIn(rawName)
         }
     }

@@ -3,10 +3,10 @@
 package org.bh.tools.base.disambiguation
 
 
-import org.bh.tools.base.math.int32Value
-import org.bh.tools.base.strings.repeat
+import org.bh.tools.base.math.*
+import org.bh.tools.base.strings.*
 import org.junit.*
-import kotlin.reflect.KClass
+import kotlin.reflect.*
 import kotlin.test.*
 
 
@@ -172,10 +172,26 @@ class OSTest {
             TestCase(OS.macOS::class, MacOSSubtype.sierra, rawName = "Mac OS X Sierra"),
             TestCase(OS.macOS::class, MacOSSubtype.sierra, rawName = "Mac OS X 10.12"),
             TestCase(OS.macOS::class, MacOSSubtype.sierra, rawName = "Mac OS X 10.12.0"),
-            TestCase(OS.macOS::class, MacOSSubtype.sierra, rawName = "Mac OS X 10.12.3"),
+            TestCase(OS.macOS::class, MacOSSubtype.sierra, rawName = "Mac OS X 10.12.6"),
             TestCase(OS.macOS::class, MacOSSubtype.sierra, rawName = "OS X Sierra"),
             TestCase(OS.macOS::class, MacOSSubtype.sierra, rawName = "osx sierra"),
             TestCase(OS.macOS::class, MacOSSubtype.sierra, rawName = "osx10.12"),
+
+            TestCase(OS.macOS::class, MacOSSubtype.highSierra, rawName = "Mac OS X High Sierra"),
+            TestCase(OS.macOS::class, MacOSSubtype.highSierra, rawName = "Mac OS X 10.13"),
+            TestCase(OS.macOS::class, MacOSSubtype.highSierra, rawName = "Mac OS X 10.13.0"),
+            TestCase(OS.macOS::class, MacOSSubtype.highSierra, rawName = "Mac OS X 10.13.6"),
+            TestCase(OS.macOS::class, MacOSSubtype.highSierra, rawName = "OS X High Sierra"),
+            TestCase(OS.macOS::class, MacOSSubtype.highSierra, rawName = "osx high sierra"),
+            TestCase(OS.macOS::class, MacOSSubtype.highSierra, rawName = "osx10.13"),
+
+            TestCase(OS.macOS::class, MacOSSubtype.mojave, rawName = "Mac OS X Mojave"),
+            TestCase(OS.macOS::class, MacOSSubtype.mojave, rawName = "Mac OS X 10.14"),
+            TestCase(OS.macOS::class, MacOSSubtype.mojave, rawName = "Mac OS X 10.14.0"),
+            TestCase(OS.macOS::class, MacOSSubtype.mojave, rawName = "Mac OS X 10.14.6"),
+            TestCase(OS.macOS::class, MacOSSubtype.mojave, rawName = "OS X Mojave"),
+            TestCase(OS.macOS::class, MacOSSubtype.mojave, rawName = "osx mojave"),
+            TestCase(OS.macOS::class, MacOSSubtype.mojave, rawName = "osx10.14"),
 
             TestCase(OS.macOS::class, MacOSSubtype.unknown, rawName = "macOS Fake"),
             TestCase(OS.macOS::class, MacOSSubtype.unknown, rawName = "Mac OS Fake"),

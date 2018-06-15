@@ -18,10 +18,8 @@ class NumberConversionKtJvmTest: NumberConversionKtTest() {
     val sampleBigDecimals: List<BigDecimal> = sampleFloat64s.map { BigDecimal(it.toString()) }
     val sampleBigIntegers: List<BigInteger> = sampleBigDecimals.map { it.toBigInteger() }
 
-    override val allSamples: List<Number> = super.allSamples +
-            sampleBigIntegers + sampleBigDecimals
-
     init {
+        allSamples.addAll(sampleBigIntegers + sampleBigDecimals)
         println("Evaluating ${allSamples.length.toString(separator = ",")} sample numbers...")
     }
 
@@ -54,25 +52,25 @@ class NumberConversionKtJvmTest: NumberConversionKtTest() {
 
 
     @Test
-    override fun toByteChecked() {
+    override fun toInt8Checked() {
 
     }
 
 
     @Test
-    override fun toShortChecked() {
+    override fun toInt16Checked() {
 
     }
 
 
     @Test
-    override fun toIntChecked() {
+    override fun toInt32Checked() {
 
     }
 
 
     @Test
-    override fun toLongChecked() {
+    override fun toInt64Checked() {
 
     }
 
