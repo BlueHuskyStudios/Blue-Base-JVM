@@ -21,35 +21,36 @@ val IntegerSize.awtValue get() = java.awt.Dimension(width.int32Value, height.int
  * Generates some random point (x, y) where 0 <= x <= width and 0 <= y <= height.
  */
 @Suppress("UNCHECKED_CAST") // checked transitively
-fun <NumberType : Number> ComputableSize<NumberType>.randomPoint(): Point<NumberType> {
+fun IntegerSize.randomPoint(): IntegerPoint {
     val random = Random()
 
-    return if (width.isNativeInteger && height.isNativeInteger) {
-        Point(
-                x = random.nextInteger(
-                        minimumValue = minX.integerValue,
-                        maximumValue = maxX.integerValue + 1
-                ) as NumberType,
-                y = random.nextInteger(
-                        minimumValue = minY.integerValue,
-                        maximumValue = maxY.integerValue + 1) as NumberType
-        )
-    }
-    else if (width.isNativeFraction && height.isNativeFraction) {
-        Point(
-                x = random.nextFraction(
-                        minimumValue = minX.fractionValue,
-                        maximumValue = maxX.fractionValue
-                ) as NumberType,
-                y = random.nextFraction(
-                        minimumValue = minY.fractionValue,
-                        maximumValue = maxY.fractionValue) as NumberType
-        )
-    } else {
-        print("Type not supported: ${width::class} x ${height::class}")
-        Point(
-                x = width,
-                y = height
-        )
-    }
+    return IntegerPoint(
+            x = random.nextInteger(
+                    minimumValue = minX,
+                    maximumValue = maxX + 1
+            ),
+            y = random.nextInteger(
+                    minimumValue = minY,
+                    maximumValue = maxY + 1
+            )
+    )
+}
+
+
+/**
+ * Generates some random point (x, y) where 0 <= x <= width and 0 <= y <= height.
+ */
+fun FractionSize.randomPoint(): FractionPoint {
+    val random = Random()
+
+    return FractionPoint(
+            x = random.nextFraction(
+                    minimumValue = minX,
+                    maximumValue = maxX
+            ),
+            y = random.nextFraction(
+                    minimumValue = minY,
+                    maximumValue = maxY
+            )
+    )
 }
