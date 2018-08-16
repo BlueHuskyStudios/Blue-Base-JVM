@@ -48,3 +48,6 @@ fun Date.timeIntervalSince(other: Date): TimeInterval {
 
     return thisIntervalSinceJavaEpoch - otherIntervalSinceJavaEpoch
 }
+
+
+val Date.timeIntervalSinceNow: TimeInterval get() = timeIntervalSince(Date())
