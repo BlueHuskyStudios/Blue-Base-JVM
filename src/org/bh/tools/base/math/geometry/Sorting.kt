@@ -13,7 +13,7 @@ import java.util.*
 
 
 
-private fun <Content> List<Content>.sortedQueueValue(sorter: ComparatorBlock<Content>): Queue<Content> {
+private fun <Content> Iterable<Content>.sortedQueueValue(sorter: ComparatorBlock<Content>): Queue<Content> {
     val x = PriorityQueue<Content> { lhs, rhs ->
         when {
             lhs == null -> ComparisonResult.right
@@ -27,7 +27,7 @@ private fun <Content> List<Content>.sortedQueueValue(sorter: ComparatorBlock<Con
 }
 
 
-inline fun <ContentType> List<ContentType>.sorted(crossinline sorter: ComparatorBlock<ContentType>): List<ContentType> =
+inline fun <ContentType> Iterable<ContentType>.sorted(crossinline sorter: ComparatorBlock<ContentType>): List<ContentType> =
         this.sortedWith(kotlin.Comparator<ContentType> { lhs, rhs ->
             (
                     if (lhs == null) ComparisonResult.right
