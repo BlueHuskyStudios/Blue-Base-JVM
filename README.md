@@ -15,10 +15,10 @@ The shared basics module of the BHSP specifically made for desktop JVM (Java SE)
 
 In order to build this module, you'll need:
 
- - Kotlin 1.1
+ - Kotlin 1.2
  - Java SE 1.8
- - [Blue Base_Core.jar](https://github.com/BlueHuskyStudios/Blue-Base/releases) <small>(located in `../Core/out/artifacts/Blue_Base_Core_jar/Blue_Base_Core.jar` relative to project root)</small>
+ - [Blue Base_Core.jar](https://github.com/BlueHuskyStudios/Blue-Base/releases) <small>(For now the code itself as a sibling project)</small>
 
 And I recommend:
 
- - IntelliJ IDEA 2017
+ - IntelliJ IDEA 2018
