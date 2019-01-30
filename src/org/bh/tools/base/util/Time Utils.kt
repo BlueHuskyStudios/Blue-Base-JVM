@@ -1,7 +1,5 @@
 package org.bh.tools.base.util
 
-import org.bh.tools.base.math.fractionValue
-import org.bh.tools.base.util.TimeConversion.nanosecondsPerMillisecond
 import java.time.Instant
 import java.util.*
 
@@ -18,19 +16,13 @@ import java.util.*
 
 
 /**
- * The number of seconds since the Java epoch: January 1st, 1970 at 00:00:00.0000
+ * The number of seconds since the Java epoch: January 1st, 1970 at 00:00:00.0000 ±0000.00
  */
 val Instant.timeIntervalSinceJavaEpoch: TimeInterval get() {
-    val millisecondsSinceJavaEpoch = toEpochMilli().fractionValue
-    val nanosecondsSinceLastSecond = nano.fractionValue
+    val millisecondsSinceJavaEpoch = toEpochMilli().timeIntervalValue.asMilliseconds
+    val nanosecondsSinceLastSecond = nano.timeIntervalValue.asNanoseconds
 
-    val nanosecondsSinceJavaEpoch = (millisecondsSinceJavaEpoch * nanosecondsPerMillisecond) + nanosecondsSinceLastSecond
-
-    val secondsSinceJavaEpoch = TimeConversion.nanosecondsToTimeInterval(nanosecondsSinceJavaEpoch)
-
-    arrayOf<String>().map { it }
-
-    return secondsSinceJavaEpoch
+    return millisecondsSinceJavaEpoch.timeIntervalValue + nanosecondsSinceLastSecond.timeIntervalValue
 }
 
 
@@ -48,3 +40,6 @@ fun Date.timeIntervalSince(other: Date): TimeInterval {
 
     return thisIntervalSinceJavaEpoch - otherIntervalSinceJavaEpoch
 }
+
+
+val Date.timeIntervalSinceNow: TimeInterval get() = timeIntervalSince(Date())
