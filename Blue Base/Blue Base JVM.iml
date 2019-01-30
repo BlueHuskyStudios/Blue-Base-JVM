@@ -20,9 +20,7 @@
       <excludeFolder url="file://$MODULE_DIR$/../out" />
     </content>
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
-    <orderEntry type="module" module-name="Blue Base Core" />
-    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="JavaFX 11.0.1" level="application" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -43,5 +41,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="Blue-Base" />
+    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
